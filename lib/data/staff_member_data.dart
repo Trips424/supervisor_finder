@@ -21,9 +21,29 @@ final List<StaffMember> sampleStaffMembers = [
       ),
       ProjectIdea(
         id: 'project-2',
-        title: 'Analyzing player performance data',
+        title: 'Analyzing player statistics',
         description: 'A project focused on analyzing player statistics.',
         area: 'Data Analysis',
+        difficulty: 'Intermediate',
+        availability: true,
+      ),
+    ],
+  ),
+
+  const StaffMember(
+    id: 'staff-2',
+    name: 'Mr Mohamed Salah',
+    email: 'mohamed.salah@port.ac.uk',
+    department: 'School of Computing',
+    biography: 'Researches software testing and web development.',
+    specialisations: ['Software Testing', 'Web Development'],
+    acceptingStudents: true,
+    projectIdeas: [
+      ProjectIdea(
+        id: 'project-2',
+        title: 'Automated testing dashboard',
+        description: 'A dashboard that displays software test results.',
+        area: 'Software Testing',
         difficulty: 'Intermediate',
         availability: true,
       ),
