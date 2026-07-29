@@ -6,16 +6,40 @@ class StaffMember {
     required this.name,
     required this.email,
     required this.department,
-    required this.subjects,
+    required this.biography,
+    required this.specialisations,
     required this.projectIdeas,
-    required this.acceptedStudents,
+    required this.acceptingStudents,
   });
 
   final String id;
   final String name;
   final String email;
   final String department;
-  final List<String> subjects;
+  final String biography;
+  final List<String> specialisations;
   final List<ProjectIdea> projectIdeas;
-  final List<Student> acceptedStudents;
+  final bool acceptingStudents;
+
+  StaffMember copyWith({
+    String? id,
+    String? name,
+    String? email,
+    String? department,
+    String? biography,
+    List<String>? specialisations,
+    List<ProjectIdea>? projectIdeas,
+    bool? acceptingStudents,
+  }) {
+    return StaffMember(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      department: department ?? this.department,
+      biography: biography ?? this.biography,
+      specialisations: specialisations ?? this.specialisations,
+      projectIdeas: projectIdeas ?? this.projectIdeas,
+      acceptingStudents: acceptingStudents ?? this.acceptingStudents,
+    );
+  }
 }
