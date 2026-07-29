@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/staff_member.dart';
-import '../utils/search_utils.dart';
+import '../../utils/search_utils.dart';
 import '../../widgets/page_header.dart';
 import '../../widgets/staff_card.dart';
 
@@ -53,9 +53,19 @@ class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
                 },
               ),
               const SizedBox(height: 24),
-              ...filteredStaff.map((staff) {
-                return StaffCard(staff: staff);
-              }),
+              if (filteredStaff.isEmpty)
+                const Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(24),
+                    child: Center(
+                      child: Text('No matching staff profiles found.'),
+                    ),
+                  ),
+                )
+              else
+                ...filteredStaff.map((staff) {
+                  return StaffCard(staff: staff);
+                }),
             ],
           ),
         ),
