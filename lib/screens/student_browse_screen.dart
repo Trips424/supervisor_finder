@@ -52,7 +52,12 @@ class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
                   });
                 },
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 12),
+              Text(
+                '${filteredStaff.length} staff profile(s) found',
+                style: const TextStyle(fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 12),
               if (filteredStaff.isEmpty)
                 const Card(
                   child: Padding(
