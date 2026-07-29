@@ -8,3 +8,18 @@ class StudentBrowseScreen extends StatelessWidget {
     super.key,
     required this.staffMembers,
   });
+
+  final List<StaffMember> staffMembers;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1000),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Find a Final Year Project Supervisor',
