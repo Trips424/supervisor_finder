@@ -14,8 +14,8 @@ class SupervisorFinderApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Supervisor Finder',
-      theme: ThemeData(primarySwatch: const Color.fromARGB(255, 9, 5, 228)),
-      home: const StudentBrowseScreen(staffMembers: sampleStaffMembers),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: StudentBrowseScreen(staffMembers: sampleStaffMembers),
     );
   }
 }
