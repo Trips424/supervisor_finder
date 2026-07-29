@@ -111,4 +111,24 @@ final List<StaffMember> sampleStaffMembers = [
       ),
     ],
   ),
+
+  const StaffMember(
+    id: 'staff-6',
+    name: 'Dr Tyrese Haliburton',
+    email: 'tyrese.haliburton@port.ac.uk',
+    department: 'School of Computing',
+    biography: 'Specialises in data science and machine learning.',
+    specialisations: ['Data Science', 'Machine Learning'],
+    acceptingStudents: true,
+    projectIdeas: [
+      ProjectIdea(
+        id: 'project-7',
+        title: 'Developing predictive models',
+        description: 'A project focused on developing predictive models.',
+        area: 'Machine Learning',
+        difficulty: 'Advanced',
+        availability: true,
+      ),
+    ],
+  ),
 ];
