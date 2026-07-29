@@ -1,9 +1,17 @@
 import '../models/staff_member.dart';
+import '../models/project_idea.dart';
 
 bool textContainsQuery(String text, String query) {
   final lowerCaseText = text.toLowerCase();
   final lowerCaseQuery = query.toLowerCase();
   return lowerCaseText.contains(lowerCaseQuery);
+}
+
+bool projectMatchesQuery(ProjectIdea project, String query) {
+  return textContainsQuery(project.title, query) ||
+      textContainsQuery(project.description, query) ||
+      textContainsQuery(project.area, query) ||
+      textContainsQuery(project.difficulty, query);
 }
 
 bool staffMemberMatchesQuery(StaffMember staff, String query) {
