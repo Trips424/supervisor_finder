@@ -4,12 +4,14 @@ import '../../models/staff_member.dart';
 import '../../widgets/staff_card.dart';
 import '../../widgets/page_header.dart';
 
-class StudentBrowseScreen extends StatelessWidget {
+class StudentBrowseScreen extends StatefulWidget {
   const StudentBrowseScreen({super.key, required this.staffMembers});
 
   final List<StaffMember> staffMembers;
 
   @override
+  State<StudentBrowseScreen> createState() => _StudentBrowseScreenState();
+}
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
