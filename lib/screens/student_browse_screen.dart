@@ -12,6 +12,9 @@ class StudentBrowseScreen extends StatefulWidget {
   @override
   State<StudentBrowseScreen> createState() => _StudentBrowseScreenState();
 }
+
+class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -26,7 +29,7 @@ class StudentBrowseScreen extends StatefulWidget {
                 subtitle: 'Explore our staff members and their project ideas.',
               ),
               const SizedBox(height: 6),
-              ...staffMembers.map((staff) {
+              ...widget.staffMembers.map((staff) {
                 return StaffCard(staff: staff);
               }),
             ],
