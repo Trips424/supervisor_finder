@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import '../models/staff_member.dart';
 import 'availability_chip.dart';
 import 'specialisation_chip.dart';
+import 'staff_availability_chip.dart';
 
 class StaffCard extends StatelessWidget {
-  const StaffCard({
-    super.key, 
-    required this.staff
-  });
+  const StaffCard({super.key, required this.staff});
 
   final StaffMember staff;
 
@@ -18,14 +16,11 @@ class StaffCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment:CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               staff.name,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 4),
             Text(staff.department),
@@ -41,12 +36,10 @@ class StaffCard extends StatelessWidget {
               }).toList(),
             ),
             const SizedBox(height: 12),
-            AvailabilityChip(isAvailable: staff.acceptingStudents),
+            StaffAvailabilityChip(acceptingStudents: staff.acceptingStudents),
           ],
         ),
       ),
     );
   }
 }
-
-
