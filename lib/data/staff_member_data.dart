@@ -20,7 +20,7 @@ final List<StaffMember> sampleStaffMembers = [
         availability: true,
       ),
       ProjectIdea(
-        id: 'project-2',
+        id: 'project-4',
         title: 'Analyzing player statistics',
         description: 'A project focused on analyzing player statistics.',
         area: 'Data Analysis',
@@ -64,6 +64,48 @@ final List<StaffMember> sampleStaffMembers = [
         title: 'Developing autonomous robots',
         description: 'A project focused on creating autonomous robots.',
         area: 'Robotics',
+        difficulty: 'Advanced',
+        availability: true,
+      ),
+    ],
+  ),
+
+  const StaffMember(
+    id: 'staff-4',
+    name: 'Dr Kyrie Irving',
+    email: 'kyrie.irving@port.ac.uk',
+    department: 'School of Computing',
+    biography: 'Specialises in computer graphics and game development.',
+    specialisations: ['Computer Graphics', 'Game Development'],
+    acceptingStudents: true,
+    projectIdeas: [
+      ProjectIdea(
+        id: 'project-5',
+        title: 'Creating interactive 3D environments',
+        description:
+            'A project focused on developing interactive 3D environments.',
+        area: 'Computer Graphics',
+        difficulty: 'Intermediate',
+        availability: true,
+      ),
+    ],
+  ),
+
+  const StaffMember(
+    id: 'staff-5',
+    name: 'Dr LeBron James',
+    email: 'lebron.james@port.ac.uk',
+    department: 'School of Computing',
+    biography: 'Specialises in software engineering and distributed systems.',
+    specialisations: ['Software Engineering', 'Distributed Systems'],
+    acceptingStudents: true,
+    projectIdeas: [
+      ProjectIdea(
+        id: 'project-6',
+        title: 'Designing scalable web applications',
+        description:
+            'A project focused on designing scalable web applications.',
+        area: 'Software Engineering',
         difficulty: 'Advanced',
         availability: true,
       ),
