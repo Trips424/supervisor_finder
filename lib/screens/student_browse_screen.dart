@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/staff_member.dart';
 import '../../widgets/staff_card.dart';
+import '../../widgets/page_header.dart';
 
 class StudentBrowseScreen extends StatelessWidget {
   const StudentBrowseScreen({super.key, required this.staffMembers});
@@ -18,15 +19,11 @@ class StudentBrowseScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Find a Final Year Project Supervisor',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              const PageHeader(
+                title: 'Browse Staff Members',
+                subtitle: 'Explore our staff members and their project ideas.',
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'Browse staff profiles, specialisations and project ideas.',
-              ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 6),
               ...staffMembers.map((staff) {
                 return StaffCard(staff: staff);
               }),
