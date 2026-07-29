@@ -49,4 +49,24 @@ final List<StaffMember> sampleStaffMembers = [
       ),
     ],
   ),
+
+  const StaffMember(
+    id: 'staff-3',
+    name: 'Dr Cristiano Ronaldo',
+    email: 'cristiano.ronaldo@port.ac.uk',
+    department: 'School of Computing',
+    biography: 'Specialises in artificial intelligence and robotics.',
+    specialisations: ['Artificial Intelligence', 'Robotics'],
+    acceptingStudents: true,
+    projectIdeas: [
+      ProjectIdea(
+        id: 'project-3',
+        title: 'Developing autonomous robots',
+        description: 'A project focused on creating autonomous robots.',
+        area: 'Robotics',
+        difficulty: 'Advanced',
+        availability: true,
+      ),
+    ],
+  ),
 ];
