@@ -14,6 +14,8 @@ class StudentBrowseScreen extends StatefulWidget {
 }
 
 class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
+  late String _searchQuery = '';
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -40,7 +42,6 @@ class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
                     _searchQuery = value.toLowerCase();
                   });
                 },
-                return StaffCard(staff: staff);
               ),
               const SizedBox(height: 20),
               ...widget.staffMembers
@@ -49,8 +50,7 @@ class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
                       staff.department.toLowerCase().contains(_searchQuery) ||
                       staff.specialisations.any((specialisation) =>
                           specialisation.toLowerCase().contains(_searchQuery)))
-                  .map((staff) => StaffCard(staff: staff))
-                  .toList(),
+                  .map((staff) => StaffCard(staff: staff)),
             ],
           ),
         ),
