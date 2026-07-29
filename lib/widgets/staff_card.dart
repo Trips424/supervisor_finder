@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/staff_member.dart';
-import 'availability_chip.dart';
+import '../screens/staff_detail_screen.dart';
 import 'specialisation_chip.dart';
 import 'staff_availability_chip.dart';
 
@@ -37,6 +37,21 @@ class StaffCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             StaffAvailabilityChip(acceptingStudents: staff.acceptingStudents),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerRight,
+              child: FilledButton.icon(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => StaffDetailScreen(staff: staff),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.open_in_new),
+                label: const Text('View profile'),
+              ),
+            ),
           ],
         ),
       ),
