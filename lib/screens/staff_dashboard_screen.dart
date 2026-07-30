@@ -63,6 +63,12 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     super.dispose();
   }
 
+  void _showMessage(String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
