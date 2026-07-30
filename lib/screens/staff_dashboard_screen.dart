@@ -78,6 +78,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       return;
     }
 
+    if (_emailController.text.trim().isEmpty) {
+      _showMessage('Email cannot be empty.');
+      return;
+    }
+
     final updatedStaff = widget.selectedStaff.copyWith(
       name: _nameController.text,
       email: _emailController.text,
