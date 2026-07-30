@@ -225,7 +225,73 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   }
 
   void _addProjectIdea() {
-    _showMessage('Add project idea selected.');
+    showDialog(
+      context: context,
+      builder:(context){
+        final titleController = TextEditingController();
+        final descriptionController = TextEditingController();
+
+        return AlertDialog(
+          title: const Text('Add Project Idea'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(
+                  labelText: 'Title',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: 3,
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () {
+                final title = titleController.text.trim();
+                final description = descriptionController.text.trim();
+
+                if (title.isEmpty || description.isEmpty) {
+                  _showMessage('Title and Description cannot be empty.');
+                  return;
+                }
+
+                final updatedProjectIdeas = List<ProjectIdea>.from(
+                  widget.selectedStaff.projectIdeas,
+                );
+
+                updatedProjectIdeas.add(ProjectIdea(title, description));
+
+                widget.onStaffUpdated(
+                  widget.selectedStaff.copyWith(
+                    projectIdeas: updatedProjectIdeas,
+                  ),
+                );
+
+                Navigator.of(context).pop();
+                _showMessage('Project idea added.');
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      }
+    )
   }
 
   void _saveProfile() {
@@ -358,9 +424,20 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   title: 'Project Ideas',
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: widget.selectedStaff.projectIdeas.map((project) {
-                      return ProjectIdeaCard(project: project);
-                    }).toList(),
+                    children:[
+                      FilledButton.icon(
+                        onPressed: _addProjectIdea,
+                        icon: const Icon(Icons.add),
+                        label: const Text('Add project idea'),
+                      ),
+                      const SizedBox(height: 12),
+                      if (widget.selectedStaff.projectIdeas.isEmpty)
+                        const Text('No project ideas have been added.')
+                      else
+                        ...widget.selectedStaff.projectIdeas.map((project) {
+                          return ProjectIdeaCard(projectIdea: project);
+                        }),
+                    ] 
                   ),
                 ),
                 const SizedBox(height: 16),
