@@ -83,6 +83,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       return;
     }
 
+    if (!_emailController.text.contains('@port.ac.uk')) {
+      _showMessage('Please enter a valid uni email address.');
+      return;
+    }
+
     final updatedStaff = widget.selectedStaff.copyWith(
       name: _nameController.text,
       email: _emailController.text,
