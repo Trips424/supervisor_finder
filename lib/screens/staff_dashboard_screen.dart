@@ -150,9 +150,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
 
                 updatedSpecialisations.removeAt(index);
 
-    widget.onStaffUpdated(
-      widget.selectedStaff.copyWith(specialisations: updatedSpecialisations),
-    );
+                widget.onStaffUpdated(
+                  widget.selectedStaff.copyWith(
+                    specialisations: updatedSpecialisations,
+                  ),
+                );
 
     _showMessage('Specialisation deleted.');
   }
