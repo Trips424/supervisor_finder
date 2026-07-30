@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/page_header.dart';
 import '../../models/staff_member.dart';
+import '../../widgets/section_card.dart';
 
 class StaffDashboardScreen extends StatelessWidget {
   const StaffDashboardScreen({
@@ -30,7 +31,7 @@ class StaffDashboardScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           DropdownButtonFormField<String>(
-            value: selectedStaff.id,
+            initialValue: selectedStaff.id,
             decoration: const InputDecoration(
               labelText: 'Select staff profile',
               border: OutlineInputBorder(),
