@@ -25,9 +25,14 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.indigo,
+        colorSchemeSeed: Colors.yellow,
       ),
-    ),
-  };
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Supervisedia'),
+        ),
+      )
 
+    );
+  };
 }
