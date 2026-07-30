@@ -27,6 +27,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   late final TextEditingController _emailController;
   late final TextEditingController _departmentController;
   late final TextEditingController _biographyController;
+  late bool _acceptingStudents;
 
   @override
   void initState() {
@@ -40,6 +41,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     _biographyController = TextEditingController(
       text: widget.selectedStaff.biography,
     );
+    _acceptingStudents = widget.selectedStaff.acceptingStudents;
   }
 
   @override
@@ -51,6 +53,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       _emailController.text = widget.selectedStaff.email;
       _departmentController.text = widget.selectedStaff.department;
       _biographyController.text = widget.selectedStaff.biography;
+      _acceptingStudents = widget.selectedStaff.acceptingStudents;
     }
   }
 
@@ -75,6 +78,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       email: _emailController.text,
       department: _departmentController.text,
       biography: _biographyController.text,
+      acceptingStudents: _acceptingStudents,
     );
 
     widget.onStaffUpdated(updatedStaff);
