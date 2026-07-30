@@ -167,6 +167,62 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     );
   }
 
+  void _editSpecialisation(int index) {
+    final controller = TextEditingController(
+      text: widget.selectedStaff.specialisations[index],
+    );
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Edit specialisation'),
+          content: TextField(
+            controller: controller,
+            decoration: const InputDecoration(
+              labelText: 'Specialisation',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () {
+                final updatedValue = controller.text.trim();
+
+                if (updatedValue.isEmpty) {
+                  _showMessage('Specialisation cannot be empty.');
+                  return;
+                }
+
+                final updatedSpecialisations = List<String>.from(
+                  widget.selectedStaff.specialisations,
+                );
+
+                updatedSpecialisations[index] = updatedValue;
+
+                widget.onStaffUpdated(
+                  widget.selectedStaff.copyWith(
+                    specialisations: updatedSpecialisations,
+                  ),
+                );
+
+                Navigator.of(context).pop();
+                _showMessage('Specialisation updated.');
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _saveProfile() {
     if (_nameController.text.trim().isEmpty) {
       _showMessage('Name cannot be empty.');
@@ -270,11 +326,22 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                             return ListTile(
                               contentPadding: EdgeInsets.zero,
                               title: Text(specialisation),
-                              trailing: IconButton(
-                                onPressed: () {
-                                  _deleteSpecialisation(index);
-                                },
-                                icon: const Icon(Icons.delete),
+                              trailing: Wrap(
+                                spacing: 8,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      _editSpecialisation(index);
+                                    },
+                                    icon: const Icon(Icons.edit),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      _deleteSpecialisation(index);
+                                    },
+                                    icon: const Icon(Icons.delete),
+                                  ),
+                                ],
                               ),
                             );
                           }),
@@ -314,7 +381,6 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   ),
                   maxLines: 4,
                 ),
-
                 const SizedBox(height: 12),
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
