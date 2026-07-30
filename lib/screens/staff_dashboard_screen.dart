@@ -78,6 +78,10 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       return;
     }
 
+    void_addSpecialisation() {
+      _showMessage('Add Specialisation selected');
+    }
+
     if (_emailController.text.trim().isEmpty) {
       _showMessage('Email cannot be empty.');
       return;
