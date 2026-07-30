@@ -81,9 +81,9 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
             StaffDashboardScreen(
               staffMembers: _staffMembers,
               selectedStaff: _chosenStaff,
-              onStaffSelected: (staff) {
-                _selectStaff(staff.id);
-                _updateStaffMember(staff);
+              onStaffSelected:_selectStaff,
+              onStaffUpdated: _updateStaffMember,
+            );
               },
             ),
           ],
