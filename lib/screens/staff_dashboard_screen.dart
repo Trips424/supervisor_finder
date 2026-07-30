@@ -4,7 +4,7 @@ import '../../widgets/page_header.dart';
 import '../../models/staff_member.dart';
 import '../../widgets/section_card.dart';
 
-class StaffDashboardScreen extends StatelessWidget {
+class StaffDashboardScreen extends StatefulWidget {
   const StaffDashboardScreen({
     super.key,
     required this.staffMembers,
@@ -19,6 +19,11 @@ class StaffDashboardScreen extends StatelessWidget {
   final void Function(StaffMember updatedStaff) onStaffUpdated;
 
   @override
+  State<StaffDashboardScreen> createState() => _StaffDashboardScreenState();
+}
+
+class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
@@ -31,12 +36,12 @@ class StaffDashboardScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           DropdownButtonFormField<String>(
-            initialValue: selectedStaff.id,
+            initialValue: widget.selectedStaff.id,
             decoration: const InputDecoration(
               labelText: 'Select staff profile',
               border: OutlineInputBorder(),
             ),
-            items: staffMembers.map((staff) {
+            items: widget.staffMembers.map((staff) {
               return DropdownMenuItem<String>(
                 value: staff.id,
                 child: Text(staff.name),
@@ -44,7 +49,7 @@ class StaffDashboardScreen extends StatelessWidget {
             }).toList(),
             onChanged: (value) {
               if (value != null) {
-                onStaffSelected(value);
+                widget.onStaffSelected(value);
               }
             },
           ),
