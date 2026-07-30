@@ -322,8 +322,8 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
             ),
           ],
         );
-      }
-    )
+      },
+    );
   }
 
   void _saveProfile() {
