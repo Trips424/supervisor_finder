@@ -4,9 +4,16 @@ import '../../widgets/page_header.dart';
 import '../../models/staff_member.dart';
 
 class StaffDashboardScreen extends StatelessWidget {
-  const StaffDashboardScreen({super.key, required this.selectedStaff});
+  const StaffDashboardScreen({
+    super.key,
+    required this.staffMembers,
+    required this.selectedStaff,
+    required this.onStaffSelected,
+  });
 
+  final List<StaffMember> staffMembers;
   final StaffMember selectedStaff;
+  final void Function(StaffMember) onStaffSelected;
 
   @override
   Widget build(BuildContext context) {
