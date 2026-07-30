@@ -227,9 +227,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   void _addProjectIdea() {
     showDialog(
       context: context,
-      builder:(context){
+      builder: (context) {
         final titleController = TextEditingController();
         final descriptionController = TextEditingController();
+        final areaController = TextEditingController();
+        final difficultyController = TextEditingController();
 
         return AlertDialog(
           title: const Text('Add Project Idea'),
