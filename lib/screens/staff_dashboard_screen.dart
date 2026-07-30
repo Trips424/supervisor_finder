@@ -126,11 +126,29 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     );
   }
 
-  void _deleteSpecialisation(int index) {
-    final updatedSpecialisations = List<String>.from(
-      widget.selectedStaff.specialisations,
-    );
-    updatedSpecialisations.removeAt(index);
+    void _deleteSpecialisation(int index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Delete specialisation'),
+          content: const Text(
+            'Are you sure you want to delete this specialisation?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () {
+                final updatedSpecialisations = List<String>.from(
+                  widget.selectedStaff.specialisations,
+                );
+
+                updatedSpecialisations.removeAt(index);
 
     widget.onStaffUpdated(
       widget.selectedStaff.copyWith(specialisations: updatedSpecialisations),
