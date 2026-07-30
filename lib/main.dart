@@ -37,7 +37,7 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
                   _selectedPageIndex = 0;
                 });
               },
-              child: const Text(Student Login),
+              child: const Text('Student Login'),
             ),
             TextButton(
               onPressed: () {
@@ -45,11 +45,18 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
                   _selectedPageIndex = 1;
                 });
               },
-              child: const Text(Staff Login),
+              child: const Text('Staff Login'),
             ),
-          ]
+          ],
         ),
-      )
+        body: IndexedStack(
+          index: _selectedPageIndex,
+          children: [
+            StudentBrowseScreen(staffMembers: staffMembers),
+            const StaffDashboardScreen(),
+          ],
+        ),
+      ),
 
     );
   };
