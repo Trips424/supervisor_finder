@@ -224,6 +224,10 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     );
   }
 
+  void _addProjectIdea() {
+    _showMessage('Add project idea selected.');
+  }
+
   void _saveProfile() {
     if (_nameController.text.trim().isEmpty) {
       _showMessage('Name cannot be empty.');
