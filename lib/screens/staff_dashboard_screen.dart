@@ -298,7 +298,16 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   widget.selectedStaff.projectIdeas,
                 );
 
-                updatedProjectIdeas.add(ProjectIdea(title, description));
+                updatedProjectIdeas.add(
+                  ProjectIdea(
+                    id: DateTime.now().millisecondsSinceEpoch.toString(),
+                    title: title,
+                    description: description,
+                    area: area,
+                    difficulty: difficulty,
+                    availability: true,
+                  ),
+                );
 
                 widget.onStaffUpdated(
                   widget.selectedStaff.copyWith(
