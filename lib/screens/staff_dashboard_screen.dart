@@ -69,6 +69,18 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
+  void _saveProfile() {
+    final updatedStaff = widget.selectedStaff.copyWith(
+      name: _nameController.text,
+      email: _emailController.text,
+      department: _departmentController.text,
+      biography: _biographyController.text,
+    );
+
+    widget.onStaffUpdated(updatedStaff);
+    _showMessage('Profile updated successfully!');
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
