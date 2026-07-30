@@ -161,6 +161,18 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   ),
                   maxLines: 4,
                 ),
+
+                const SizedBox(height: 12),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Accepting Students'),
+                  value: _acceptingStudents,
+                  onChanged: (value) {
+                    setState(() {
+                      _acceptingStudents = value;
+                    });
+                  },
+                ),
                 const SizedBox(height: 16),
                 FilledButton.icon(
                   onPressed: _saveProfile,
