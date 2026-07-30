@@ -286,8 +286,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                 final area = areaController.text.trim();
                 final difficulty = difficultyController.text.trim();
 
-                if (title.isEmpty || description.isEmpty) {
-                  _showMessage('Title and Description cannot be empty.');
+                if (title.isEmpty ||
+                    description.isEmpty ||
+                    area.isEmpty ||
+                    difficulty.isEmpty) {
+                  _showMessage('All fields cannot be empty.');
                   return;
                 }
 
