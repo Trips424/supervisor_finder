@@ -49,9 +49,12 @@ class StaffDashboardScreen extends StatelessWidget {
             },
           ),
           const SizedBox(height: 24),
-          Text(
-            'Editing: ${selectedStaff.name}',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          SectionCard(
+            title: 'Selected Staff Profile',
+            child: Text(
+              'Editing: ${selectedStaff.name}\n',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
           ),
         ],
       ),
