@@ -283,6 +283,8 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
               onPressed: () {
                 final title = titleController.text.trim();
                 final description = descriptionController.text.trim();
+                final area = areaController.text.trim();
+                final difficulty = difficultyController.text.trim();
 
                 if (title.isEmpty || description.isEmpty) {
                   _showMessage('Title and Description cannot be empty.');
