@@ -96,9 +96,25 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
           const SizedBox(height: 24),
           SectionCard(
             title: 'Selected Staff Profile',
-            child: Text(
-              'Editing: ${widget.selectedStaff.name}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Editing: ${widget.selectedStaff.name}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Name',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
