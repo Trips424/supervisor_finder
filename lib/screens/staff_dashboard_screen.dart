@@ -43,6 +43,18 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   }
 
   @override
+  void didUpdateWidget(covariant StaffDashboardScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.selectedStaff.id != widget.selectedStaff.id) {
+      _nameController.text = widget.selectedStaff.name;
+      _emailController.text = widget.selectedStaff.email;
+      _departmentController.text = widget.selectedStaff.department;
+      _biographyController.text = widget.selectedStaff.biography;
+    }
+  }
+
+  @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
