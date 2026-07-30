@@ -88,6 +88,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       return;
     }
 
+    if (_departmentController.text.trim().isEmpty) {
+      _showMessage('Department cannot be empty.');
+      return;
+    }
+
     final updatedStaff = widget.selectedStaff.copyWith(
       name: _nameController.text,
       email: _emailController.text,
