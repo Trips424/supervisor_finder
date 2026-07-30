@@ -9,11 +9,13 @@ class StaffDashboardScreen extends StatelessWidget {
     required this.staffMembers,
     required this.selectedStaff,
     required this.onStaffSelected,
+    required this.onStaffUpdated,
   });
 
   final List<StaffMember> staffMembers;
   final StaffMember selectedStaff;
   final void Function(String staffId) onStaffSelected;
+  final void Function(StaffMember updatedStaff) onStaffUpdated;
 
   @override
   Widget build(BuildContext context) {
