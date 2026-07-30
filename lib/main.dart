@@ -52,12 +52,12 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
         body: IndexedStack(
           index: _selectedPageIndex,
           children: [
-            StudentBrowseScreen(staffMembers: staffMembers),
+            StudentBrowseScreen(staffMembers: sampleStaffMembers),
             const StaffDashboardScreen(),
           ],
         ),
       ),
 
     );
-  };
+  }
 }
