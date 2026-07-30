@@ -232,11 +232,24 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                         label: const Text('Add specialisation'),
                       ),
                       const SizedBox(height: 12),
-                      ...widget.selectedStaff.specialisations.map((
-                        specialisation,
-                      ) {
-                        return Text('• $specialisation');
-                      }),
+                      ...widget.selectedStaff.specialisations
+                          .asMap()
+                          .entries
+                          .map((entry) {
+                            final index = entry.key;
+                            final specialisation = entry.value;
+
+                            return ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: Text(specialisation),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  _deleteSpecialisation(index);
+                                },
+                                icon: const Icon(Icons.delete),
+                              ),
+                            );
+                          }),
                     ],
                   ),
                 ),
