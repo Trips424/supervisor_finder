@@ -50,8 +50,8 @@ class StaffDetailScreen extends StatelessWidget {
               const Text('No project ideas have been added.')
             else
               ...staff.projectIdeas.map((project) {
-                return ProjectIdeaCard(project: project);
-              }),
+                return ProjectIdeaCard(projectIdea: project);
+              }).toList(),
           ],
         ),
       ),
