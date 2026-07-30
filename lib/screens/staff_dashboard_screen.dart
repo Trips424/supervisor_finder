@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/page_header.dart';
 import '../../models/staff_member.dart';
+import '../../models/project_idea.dart';
 import '../../widgets/section_card.dart';
 import '../../widgets/project_idea_card.dart';
 
@@ -456,7 +457,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   title: 'Project Ideas',
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
+                    children: [
                       FilledButton.icon(
                         onPressed: _addProjectIdea,
                         icon: const Icon(Icons.add),
@@ -469,7 +470,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                         ...widget.selectedStaff.projectIdeas.map((project) {
                           return ProjectIdeaCard(projectIdea: project);
                         }),
-                    ] 
+                    ],
                   ),
                 ),
                 const SizedBox(height: 16),
