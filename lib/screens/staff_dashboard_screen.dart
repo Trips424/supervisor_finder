@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/page_header.dart';
+import '../../models/staff_member.dart';
 
 class StaffDashboardScreen extends StatelessWidget {
-  const StaffDashboardScreen({super.key});
+  const StaffDashboardScreen({super.key, required this.selectedStaff});
+
+  final StaffMember selectedStaff;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +22,7 @@ class StaffDashboardScreen extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             'Editing: ${selectedStaff.name}',
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
           ),
         ],
       ),
