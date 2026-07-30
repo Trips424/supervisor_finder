@@ -126,6 +126,19 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     );
   }
 
+  void _deleteSpecialisation(int index) {
+    final updatedSpecialisations = List<String>.from(
+      widget.selectedStaff.specialisations,
+    );
+    updatedSpecialisations.removeAt(index);
+
+    widget.onStaffUpdated(
+      widget.selectedStaff.copyWith(specialisations: updatedSpecialisations),
+    );
+
+    _showMessage('Specialisation deleted.');
+  }
+
   void _saveProfile() {
     if (_nameController.text.trim().isEmpty) {
       _showMessage('Name cannot be empty.');
