@@ -57,7 +57,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
           SectionCard(
             title: 'Selected Staff Profile',
             child: Text(
-              'Editing: ${selectedStaff.name}\n',
+              'Editing: ${widget.selectedStaff.name}\n',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
