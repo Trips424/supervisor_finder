@@ -22,6 +22,29 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
   );
 
   int _selectedPageIndex = 0;
+  String _chosenStaffId = sampleStaffMembers.first.id;
+
+  StaffMember get _chosenStaff {
+    return _staffMembers.firstWhere((staff) => staff.id == _chosenStaffId);
+  }
+
+  void _updateStaffMember(StaffMember updatedStaff) {
+    setState(() {
+      final index = _staffMembers.indexWhere(
+        (staff) => staff.id == updatedStaff.id,
+      );
+
+      if (index != -1) {
+        _staffMembers[index] = updatedStaff;
+      }
+    });
+  }
+
+  void _selectStaff(String staffId) {
+    setState(() {
+      _chosenStaffId = staffId;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +78,10 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
           index: _selectedPageIndex,
           children: [
             StudentBrowseScreen(staffMembers: _staffMembers),
-            StaffDashboardScreen(selectedStaff: sampleStaffMembers.first),
+            StaffDashboardScreen(
+              staffMembers: _staffMembers,
+              selectedStaff: _chosenStaff,
+            ),
           ],
         ),
       ),
