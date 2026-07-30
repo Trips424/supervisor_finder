@@ -76,13 +76,16 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
           ),
           const SizedBox(height: 24),
           DropdownButtonFormField<String>(
-            initValue: widget.selectedStaff.id,
+            initialValue: widget.selectedStaff.id,
             decoration: const InputDecoration(
               labelText: 'Select staff profile',
               border: OutlineInputBorder(),
             ),
             items: widget.staffMembers.map((staff) {
-              return DropdownMenuItem(value: staff.id, child: Text(staff.name));
+              return DropdownMenuItem<String>(
+                value: staff.id,
+                child: Text(staff.name),
+              );
             }).toList(),
             onChanged: (value) {
               if (value != null) {
