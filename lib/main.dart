@@ -30,6 +30,24 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Supervisedia'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _selectedPageIndex = 0;
+                });
+              },
+              child: const Text(Student Login),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _selectedPageIndex = 1;
+                });
+              },
+              child: const Text(Staff Login),
+            ),
+          ]
         ),
       )
 
