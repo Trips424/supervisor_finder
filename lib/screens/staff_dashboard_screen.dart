@@ -122,6 +122,14 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                     border: OutlineInputBorder(),
                   ),
                 ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: _departmentController,
+                  decoration: const InputDecoration(
+                    labelText: 'Department',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
               ],
             ),
           ),
