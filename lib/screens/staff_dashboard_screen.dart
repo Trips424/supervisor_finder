@@ -6,6 +6,7 @@ import '../../models/staff_member.dart';
 class StaffDashboardScreen extends StatelessWidget {
   const StaffDashboardScreen({super.key, required this.selectedStaff});
 
+  final List<StaffMember> staffMembers;
   final StaffMember selectedStaff;
 
   @override
