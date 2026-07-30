@@ -78,7 +78,7 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
           index: _selectedPageIndex,
           children: [
             StudentBrowseScreen(staffMembers: _staffMembers),
-            const StaffDashboardScreen(),
+            const StaffDashboardScreen(selectedStaff: sampleStaffMembers.first),
           ],
         ),
       ),
