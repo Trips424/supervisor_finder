@@ -28,18 +28,6 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
     return _staffMembers.firstWhere((staff) => staff.id == _chosenStaffId);
   }
 
-  void _updateStaffMember(StaffMember updatedStaff) {
-    setState(() {
-      final index = _staffMembers.indexWhere(
-        (staff) => staff.id == updatedStaff.id,
-      );
-
-      if (index != -1) {
-        _staffMembers[index] = updatedStaff;
-      }
-    });
-  }
-
   void _selectStaff(String staffId) {
     setState(() {
       _chosenStaffId = staffId;
@@ -81,9 +69,18 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
             StaffDashboardScreen(
               staffMembers: _staffMembers,
               selectedStaff: _chosenStaff,
-              onStaffSelected:_selectStaff,
-              onStaffUpdated: _updateStaffMember,
-            );
+              onStaffSelected: (staffId) {
+                _selectStaff(staffId);
+              },
+              onStaffUpdated: (updatedStaff) {
+                setState(() {
+                  final index = _staffMembers.indexWhere(
+                    (staff) => staff.id == updatedStaff.id,
+                  );
+                  if (index != -1) {
+                    _staffMembers[index] = updatedStaff;
+                  }
+                });
               },
             ),
           ],
