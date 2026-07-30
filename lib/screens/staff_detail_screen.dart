@@ -51,7 +51,7 @@ class StaffDetailScreen extends StatelessWidget {
             else
               ...staff.projectIdeas.map((project) {
                 return ProjectIdeaCard(projectIdea: project);
-              }).toList(),
+              }),
           ],
         ),
       ),
