@@ -28,18 +28,6 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
     return _staffMembers.firstWhere((staff) => staff.id == _chosenStaffId);
   }
 
-  void _updateStaffMember(StaffMember updatedStaff) {
-    setState(() {
-      final index = _staffMembers.indexWhere(
-        (staff) => staff.id == updatedStaff.id,
-      );
-
-      if (index != -1) {
-        _staffMembers[index] = updatedStaff;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
