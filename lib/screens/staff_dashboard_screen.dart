@@ -72,14 +72,14 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
+  void _addSpecialisation() {
+    _showMessage('Add Specialisation selected');
+  }
+
   void _saveProfile() {
     if (_nameController.text.trim().isEmpty) {
       _showMessage('Name cannot be empty.');
       return;
-    }
-
-    void_addSpecialisation() {
-      _showMessage('Add Specialisation selected');
     }
 
     if (_emailController.text.trim().isEmpty) {
@@ -162,11 +162,19 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   title: 'Specialisations',
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: widget.selectedStaff.specialisations.map((
-                      specialisation,
-                    ) {
-                      return Text('• $specialisation');
-                    }).toList(),
+                    children: [
+                      FilledButton.icon(
+                        onPressed: _addSpecialisation,
+                        icon: const Icon(Icons.add),
+                        label: const Text('Add specialisation'),
+                      ),
+                      const SizedBox(height: 12),
+                      ...widget.selectedStaff.specialisations.map((
+                        specialisation,
+                      ) {
+                        return Text('• $specialisation');
+                      }),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 16),
