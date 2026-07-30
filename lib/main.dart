@@ -40,6 +40,12 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
     });
   }
 
+  void _selectStaff(String staffId) {
+    setState(() {
+      _chosenStaffId = staffId;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
