@@ -19,5 +19,15 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
   int _selectedPageIndex = 0;
 
   @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Supervisedia',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.indigo,
+      ),
+    ),
+  };
 
 }
