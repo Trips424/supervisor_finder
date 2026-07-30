@@ -13,7 +13,7 @@ class StaffDashboardScreen extends StatelessWidget {
 
   final List<StaffMember> staffMembers;
   final StaffMember selectedStaff;
-  final void Function(StaffMember) onStaffSelected;
+  final void Function(String staffId) onStaffSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,25 @@ class StaffDashboardScreen extends StatelessWidget {
           const PageHeader(
             title: 'Staff Dashboard',
             subtitle: 'Manage your profile, specialisations and project ideas.',
+          ),
+          const SizedBox(height: 24),
+          DropdownButtonFormField<String>(
+            value: selectedStaff.id,
+            decoration: const InputDecoration(
+              labelText: 'Select staff profile',
+              border: OutlineInputBorder(),
+            ),
+            items: staffMembers.map((staff) {
+              return DropdownMenuItem<String>(
+                value: staff.id,
+                child: Text(staff.name),
+              );
+            }).toList(),
+            onChanged: (value) {
+              if (value != null) {
+                onStaffSelected(value);
+              }
+            },
           ),
           const SizedBox(height: 24),
           Text(
