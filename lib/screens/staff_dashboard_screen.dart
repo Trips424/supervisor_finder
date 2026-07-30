@@ -157,6 +157,12 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   ),
                   maxLines: 4,
                 ),
+                const SizedBox(height: 16),
+                FilledButton.icon(
+                  onPressed: _saveProfile,
+                  icon: const Icon(Icons.save),
+                  label: const Text('Save Profile'),
+                ),
               ],
             ),
           ),
