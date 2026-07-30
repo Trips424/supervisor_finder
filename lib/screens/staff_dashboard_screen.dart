@@ -254,6 +254,22 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                 ),
                 maxLines: 3,
               ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: areaController,
+                decoration: const InputDecoration(
+                  labelText: 'Area',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: difficultyController,
+                decoration: const InputDecoration(
+                  labelText: 'Difficulty',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ],
           ),
           actions: [
