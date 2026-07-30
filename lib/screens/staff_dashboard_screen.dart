@@ -96,7 +96,27 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
             ),
             FilledButton(
               onPressed: () {
+                final specialisation = controller.text.trim();
+
+                if (specialisation.isEmpty) {
+                  _showMessage('Specialisation cannot be empty.');
+                  return;
+                }
+
+                final updatedSpecialisations = List<String>.from(
+                  widget.selectedStaff.specialisations,
+                );
+
+                updatedSpecialisations.add(specialisation);
+
+                widget.onStaffUpdated(
+                  widget.selectedStaff.copyWith(
+                    specialisations: updatedSpecialisations,
+                  ),
+                );
+
                 Navigator.of(context).pop();
+                _showMessage('Specialisation added.');
               },
               child: const Text('Save'),
             ),
