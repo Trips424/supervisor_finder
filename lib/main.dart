@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'data/staff_member_data.dart';
+import 'models/staff_member.dart';
 import 'screens/student_browse_screen.dart';
 import 'screens/staff_dashboard_screen.dart';
 
@@ -16,6 +17,7 @@ class SupervisorFinderApp extends StatefulWidget {
 }
 
 class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
+  final List<StaffMember> _staffMembers = List.from(sampleStaffMembers);
   int _selectedPageIndex = 0;
 
   @override
@@ -23,10 +25,7 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
     return MaterialApp(
       title: 'Supervisedia',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.yellow,
-      ),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.yellow),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Supervisedia'),
@@ -52,7 +51,7 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
         body: IndexedStack(
           index: _selectedPageIndex,
           children: [
-            StudentBrowseScreen(staffMembers: sampleStaffMembers),
+            StudentBrowseScreen(staffMembers: _staffMembers),
             const StaffDashboardScreen(),
           ],
         ),
@@ -60,4 +59,3 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
     );
   }
 }
-
