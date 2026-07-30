@@ -154,6 +154,18 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
+                SectionCard(
+                  title: 'Specialisations',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: widget.selectedStaff.specialisations.map((
+                      specialisation,
+                    ) {
+                      return Text('• $specialisation');
+                    }).toList(),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 TextField(
                   controller: _nameController,
                   decoration: const InputDecoration(
