@@ -156,7 +156,15 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   ),
                 );
 
-    _showMessage('Specialisation deleted.');
+                Navigator.of(context).pop();
+                _showMessage('Specialisation deleted.');
+              },
+              child: const Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _saveProfile() {
