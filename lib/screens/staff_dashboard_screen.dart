@@ -93,6 +93,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       return;
     }
 
+    if (_biographyController.text.trim().isEmpty) {
+      _showMessage('Biography cannot be empty.');
+      return;
+    }
+
     final updatedStaff = widget.selectedStaff.copyWith(
       name: _nameController.text,
       email: _emailController.text,
