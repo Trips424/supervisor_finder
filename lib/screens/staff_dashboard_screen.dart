@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/page_header.dart';
 import '../../models/staff_member.dart';
 import '../../widgets/section_card.dart';
+import '../../widgets/project_idea_card.dart';
 
 class StaffDashboardScreen extends StatefulWidget {
   const StaffDashboardScreen({
@@ -346,6 +347,16 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                             );
                           }),
                     ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                SectionCard(
+                  title: 'Project Ideas',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: widget.selectedStaff.projectIdeas.map((project) {
+                      return ProjectIdeaCard(project: project);
+                    }).toList(),
                   ),
                 ),
                 const SizedBox(height: 16),
