@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/staff_member.dart';
 import '../../widgets/specialisation_chip.dart';
+import '../../widgets/project_idea_card.dart';
 
 class StaffDetailScreen extends StatelessWidget {
   const StaffDetailScreen({super.key, required this.staff});
@@ -12,7 +13,7 @@ class StaffDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(staff.name)),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,6 +40,18 @@ class StaffDetailScreen extends StatelessWidget {
                 return SpecialisationChip(label: specialisation);
               }).toList(),
             ),
+            const SizedBox(height: 24),
+            const Text(
+              'Project Ideas',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            if (staff.projectIdeas.isEmpty)
+              const Text('No project ideas have been added.')
+            else
+              ...staff.projectIdeas.map((project) {
+                return ProjectIdeaCard(project: project);
+              }),
           ],
         ),
       ),
