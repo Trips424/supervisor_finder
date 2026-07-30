@@ -17,8 +17,16 @@ class SupervisorFinderApp extends StatefulWidget {
 }
 
 class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
-  final List<StaffMember> _staffMembers = List.from(sampleStaffMembers);
+  final List<StaffMember> _staffMembers = List<StaffMember>.from(
+    sampleStaffMembers,
+  );
+
   int _selectedPageIndex = 0;
+  String _chosenStaffId = sampleStaffMembers.first.id;
+
+  StaffMember get _chosenStaff {
+    return _staffMembers.firstWhere((staff) => staff.id == _chosenStaffId);
+  }
 
   @override
   Widget build(BuildContext context) {
