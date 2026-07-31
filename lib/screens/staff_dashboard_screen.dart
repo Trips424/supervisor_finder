@@ -352,9 +352,9 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                 return;
               }
 
-                final updatedProjectIdeas = List<ProjectIdea>.from(
-                  widget.selectedStaff.projectIdeas,
-                );
+              final updatedProjects = List<ProjectIdea>.from(
+                widget.selectedStaff.projectIdeas,
+              );
 
                 updatedProjectIdeas.add(
                   ProjectIdea(
