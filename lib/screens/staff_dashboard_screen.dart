@@ -633,10 +633,10 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     }
 
     final updatedStaff = widget.selectedStaff.copyWith(
-      name: _nameController.text,
-      email: _emailController.text,
-      department: _departmentController.text,
-      biography: _biographyController.text,
+      name: _nameController.text.trim(),
+      email: _emailController.text.trim(),
+      department: _departmentController.text.trim(),
+      biography: _biographyController.text.trim(),
       acceptingStudents: _acceptingStudents,
     );
 
