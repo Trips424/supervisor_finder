@@ -126,7 +126,7 @@ final List<StaffMember> sampleStaffMembers = [
         title: 'Developing predictive models',
         description: 'A project focused on developing predictive models.',
         area: 'Machine Learning',
-        difficulty: 'Advanced',
+        difficulty: 'Hard',
         availability: true,
       ),
     ],
