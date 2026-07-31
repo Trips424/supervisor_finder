@@ -484,12 +484,24 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                     child: Text('Graph Theory'),
                   ),
                   DropdownMenuItem(
+                    value: 'Algorithms',
+                    child: Text('Algorithms'),
+                  ),
+                  DropdownMenuItem(
                     value: 'Databases',
                     child: Text('Databases'),
                   ),
                   DropdownMenuItem(
                     value: 'Cloud Computing',
                     child: Text('Cloud Computing'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Cyber Security',
+                    child: Text('Cyber Security'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Artificial Intelligence',
+                    child: Text('Artificial Intelligence'),
                   ),
                 ],
                 onChanged: (value) {
