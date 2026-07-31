@@ -237,6 +237,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          scrollable: true,
           title: const Text('Add project idea'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -435,6 +436,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          scrollable: true,
           title: const Text('Edit project idea'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
