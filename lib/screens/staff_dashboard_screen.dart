@@ -226,11 +226,11 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   }
 
   void _addProjectIdea() {
-  final titleController = TextEditingController();
-  final descriptionController = TextEditingController();
+    final titleController = TextEditingController();
+    final descriptionController = TextEditingController();
 
-  String selectedArea = 'Machine Learning';
-  String difficulty = 'Intermediate';
+    String selectedArea = 'Machine Learning';
+    String difficulty = 'Intermediate';
 
   showDialog(
     context: context,
