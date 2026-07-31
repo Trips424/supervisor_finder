@@ -321,6 +321,29 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   }
                 },
               ),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                initialValue: availability,
+                decoration: const InputDecoration(
+                  labelText: 'Availability',
+                  border: OutlineInputBorder(),
+                ),
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Available',
+                    child: Text('Available'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Unavailable',
+                    child: Text('Unavailable'),
+                  ),
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    availability = value;
+                  }
+                },
+              ),
             ],
           ),
           actions: [
