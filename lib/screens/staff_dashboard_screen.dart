@@ -420,19 +420,103 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
 
   void _editProjectIdea(int index) {
     final project = widget.selectedStaff.projectIdeas[index];
+
     final titleController = TextEditingController(text: project.title);
+    final descriptionController = TextEditingController(
+      text: project.description,
+    );
+
+    String selectedArea = project.area;
+    String difficulty = project.difficulty;
 
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: const Text('Edit project idea'),
-          content: TextField(
-            controller: titleController,
-            decoration: const InputDecoration(
-              labelText: 'Project title',
-              border: OutlineInputBorder(),
-            ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(
+                  labelText: 'Project title',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(
+                  labelText: 'Project description',
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: 3,
+              ),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                initialValue: selectedArea,
+                decoration: const InputDecoration(
+                  labelText: 'Project area',
+                  border: OutlineInputBorder(),
+                ),
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Machine Learning',
+                    child: Text('Machine Learning'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Data Analysis',
+                    child: Text('Data Analysis'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Software Testing',
+                    child: Text('Software Testing'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Web Development',
+                    child: Text('Web Development'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Graph Theory',
+                    child: Text('Graph Theory'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Databases',
+                    child: Text('Databases'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Cloud Computing',
+                    child: Text('Cloud Computing'),
+                  ),
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    selectedArea = value;
+                  }
+                },
+              ),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                initialValue: difficulty,
+                decoration: const InputDecoration(
+                  labelText: 'Difficulty',
+                  border: OutlineInputBorder(),
+                ),
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Intermediate',
+                    child: Text('Intermediate'),
+                  ),
+                  DropdownMenuItem(value: 'Hard', child: Text('Hard')),
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    difficulty = value;
+                  }
+                },
+              ),
+            ],
           ),
           actions: [
             TextButton(
@@ -442,8 +526,41 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
               child: const Text('Cancel'),
             ),
             FilledButton(
-              onPressed: () {}
-                
+              onPressed: () {
+                final title = titleController.text.trim();
+                final description = descriptionController.text.trim();
+
+                if (title.isEmpty) {
+                  _showMessage('Project title cannot be empty.');
+                  return;
+                }
+
+                if (description.isEmpty) {
+                  _showMessage('Project description cannot be empty.');
+                  return;
+                }
+
+                final updatedProjects = List<ProjectIdea>.from(
+                  widget.selectedStaff.projectIdeas,
+                );
+
+                updatedProjects[index] = project.copyWith(
+                  title: title,
+                  description: description,
+                  area: selectedArea,
+                  difficulty: difficulty,
+                );
+
+                widget.onStaffUpdated(
+                  widget.selectedStaff.copyWith(projectIdeas: updatedProjects),
+                );
+
+                Navigator.of(context).pop();
+                _showMessage('Project idea updated.');
+              },
+              child: const Text('Save'),
+            ),
+          ],
         );
       },
     );
