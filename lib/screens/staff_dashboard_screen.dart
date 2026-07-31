@@ -703,35 +703,38 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                             label: const Text('Add specialisation'),
                           ),
                           const SizedBox(height: 12),
-                          ...widget.selectedStaff.specialisations
-                              .asMap()
-                              .entries
-                              .map((entry) {
-                                final index = entry.key;
-                                final specialisation = entry.value;
+                          if (widget.selectedStaff.specialisations.isEmpty)
+                            const Text('No specialisations have been added.')
+                          else
+                            ...widget.selectedStaff.specialisations
+                                .asMap()
+                                .entries
+                                .map((entry) {
+                                  final index = entry.key;
+                                  final specialisation = entry.value;
 
-                                return ListTile(
-                                  contentPadding: EdgeInsets.zero,
-                                  title: Text(specialisation),
-                                  trailing: Wrap(
-                                    spacing: 8,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          _editSpecialisation(index);
-                                        },
-                                        icon: const Icon(Icons.edit),
-                                      ),
-                                      IconButton(
-                                        onPressed: () {
-                                          _deleteSpecialisation(index);
-                                        },
-                                        icon: const Icon(Icons.delete),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }),
+                                  return ListTile(
+                                    contentPadding: EdgeInsets.zero,
+                                    title: Text(specialisation),
+                                    trailing: Wrap(
+                                      spacing: 8,
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            _editSpecialisation(index);
+                                          },
+                                          icon: const Icon(Icons.edit),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            _deleteSpecialisation(index);
+                                          },
+                                          icon: const Icon(Icons.delete),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }),
                         ],
                       ),
                     ),
