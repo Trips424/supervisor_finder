@@ -379,22 +379,19 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     );
   }
 
-
   void _deleteProjectIdea(int index) {
-  final updatedProjects = List<ProjectIdea>.from(
-    widget.selectedStaff.projectIdeas,
-  );
+    final updatedProjects = List<ProjectIdea>.from(
+      widget.selectedStaff.projectIdeas,
+    );
 
-  updatedProjects.removeAt(index);
+    updatedProjects.removeAt(index);
 
-  widget.onStaffUpdated(
-    widget.selectedStaff.copyWith(
-      projectIdeas: updatedProjects,
-    ),
-  );
+    widget.onStaffUpdated(
+      widget.selectedStaff.copyWith(projectIdeas: updatedProjects),
+    );
 
-  _showMessage('Project idea deleted.');
-}
+    _showMessage('Project idea deleted.');
+  }
 
   void _saveProfile() {
     if (_nameController.text.trim().isEmpty) {
