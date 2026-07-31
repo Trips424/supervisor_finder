@@ -575,19 +575,30 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                                   ProjectIdeaCard(projectIdea: project),
                                   Align(
                                     alignment: Alignment.centerRight,
-                                    child: TextButton.icon(
-                                      onPressed: () {
-                                        _deleteProjectIdea(index);
-                                      },
-                                      icon: const Icon(Icons.delete),
-                                      label: const Text('Delete project'),
+                                    child: Wrap(
+                                      spacing: 8,
+                                      children: [
+                                        TextButton.icon(
+                                          onPressed: () {
+                                            _editProjectIdea(index);
+                                          },
+                                          icon: const Icon(Icons.edit),
+                                          label: const Text('Edit project'),
+                                        ),
+                                        TextButton.icon(
+                                          onPressed: () {
+                                            _deleteProjectIdea(index);
+                                          },
+                                          icon: const Icon(Icons.delete),
+                                          label: const Text('Delete project'),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   const SizedBox(height: 8),
                                 ],
                               );
-                            })
-                            .toList(),
+                            }),
                     ],
                   ),
                 ),
