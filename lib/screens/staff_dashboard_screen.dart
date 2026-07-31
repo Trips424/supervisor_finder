@@ -842,6 +842,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                     const SizedBox(height: 12),
                     TextField(
                       controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: const InputDecoration(
                         labelText: 'Email',
                         border: OutlineInputBorder(),
