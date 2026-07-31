@@ -419,7 +419,34 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   }
 
   void _editProjectIdea(int index) {
-    _showMessage('Editing project ideas almost.');
+    final project = widget.selectedStaff.projectIdeas[index];
+    final titleController = TextEditingController(text: project.title);
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Edit project idea'),
+          content: TextField(
+            controller: titleController,
+            decoration: const InputDecoration(
+              labelText: 'Project title',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () {}
+                
+        );
+      },
+    );
   }
 
   void _saveProfile() {
