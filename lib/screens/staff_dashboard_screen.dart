@@ -652,7 +652,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
       return;
     }
 
-    if (!_emailController.text.contains('@port.ac.uk')) {
+    if (!_emailController.text.contains('@')) {
       _showMessage('Please enter a valid uni email address.');
       return;
     }
