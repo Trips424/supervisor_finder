@@ -379,6 +379,23 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
     );
   }
 
+
+  void _deleteProjectIdea(int index) {
+  final updatedProjects = List<ProjectIdea>.from(
+    widget.selectedStaff.projectIdeas,
+  );
+
+  updatedProjects.removeAt(index);
+
+  widget.onStaffUpdated(
+    widget.selectedStaff.copyWith(
+      projectIdeas: updatedProjects,
+    ),
+  );
+
+  _showMessage('Project idea deleted.');
+}
+
   void _saveProfile() {
     if (_nameController.text.trim().isEmpty) {
       _showMessage('Name cannot be empty.');
