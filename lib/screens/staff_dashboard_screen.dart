@@ -654,195 +654,201 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-          const PageHeader(
-            title: 'Staff Dashboard',
-            subtitle: 'Manage your profile, specialisations and project ideas.',
-          ),
-          const SizedBox(height: 24),
-          DropdownButtonFormField<String>(
-            initialValue: widget.selectedStaff.id,
-            decoration: const InputDecoration(
-              labelText: 'Select staff profile',
-              border: OutlineInputBorder(),
-            ),
-            items: widget.staffMembers.map((staff) {
-              return DropdownMenuItem<String>(
-                value: staff.id,
-                child: Text(staff.name),
-              );
-            }).toList(),
-            onChanged: (value) {
-              if (value != null) {
-                widget.onStaffSelected(value);
-              }
-            },
-          ),
-          const SizedBox(height: 24),
-          SectionCard(
-            title: 'Selected Staff Profile',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Editing: ${widget.selectedStaff.name}',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+              const PageHeader(
+                title: 'Staff Dashboard',
+                subtitle:
+                    'Manage your profile, specialisations and project ideas.',
+              ),
+              const SizedBox(height: 24),
+              DropdownButtonFormField<String>(
+                initialValue: widget.selectedStaff.id,
+                decoration: const InputDecoration(
+                  labelText: 'Select staff profile',
+                  border: OutlineInputBorder(),
                 ),
-                const SizedBox(height: 16),
-                SectionCard(
-                  title: 'Specialisations',
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FilledButton.icon(
-                        onPressed: _addSpecialisation,
-                        icon: const Icon(Icons.add),
-                        label: const Text('Add specialisation'),
+                items: widget.staffMembers.map((staff) {
+                  return DropdownMenuItem<String>(
+                    value: staff.id,
+                    child: Text(staff.name),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    widget.onStaffSelected(value);
+                  }
+                },
+              ),
+              const SizedBox(height: 24),
+              SectionCard(
+                title: 'Selected Staff Profile',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Editing: ${widget.selectedStaff.name}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
-                      const SizedBox(height: 12),
-                      ...widget.selectedStaff.specialisations
-                          .asMap()
-                          .entries
-                          .map((entry) {
-                            final index = entry.key;
-                            final specialisation = entry.value;
+                    ),
+                    const SizedBox(height: 16),
+                    SectionCard(
+                      title: 'Specialisations',
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FilledButton.icon(
+                            onPressed: _addSpecialisation,
+                            icon: const Icon(Icons.add),
+                            label: const Text('Add specialisation'),
+                          ),
+                          const SizedBox(height: 12),
+                          ...widget.selectedStaff.specialisations
+                              .asMap()
+                              .entries
+                              .map((entry) {
+                                final index = entry.key;
+                                final specialisation = entry.value;
 
-                            return ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: Text(specialisation),
-                              trailing: Wrap(
-                                spacing: 8,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      _editSpecialisation(index);
-                                    },
-                                    icon: const Icon(Icons.edit),
+                                return ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  title: Text(specialisation),
+                                  trailing: Wrap(
+                                    spacing: 8,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          _editSpecialisation(index);
+                                        },
+                                        icon: const Icon(Icons.edit),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          _deleteSpecialisation(index);
+                                        },
+                                        icon: const Icon(Icons.delete),
+                                      ),
+                                    ],
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      _deleteSpecialisation(index);
-                                    },
-                                    icon: const Icon(Icons.delete),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
-                SectionCard(
-                  title: 'Project Ideas',
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FilledButton.icon(
-                        onPressed: _addProjectIdea,
-                        icon: const Icon(Icons.add),
-                        label: const Text('Add project idea'),
+                                );
+                              }),
+                        ],
                       ),
-                      const SizedBox(height: 12),
-                      if (widget.selectedStaff.projectIdeas.isEmpty)
-                        const Text('No project ideas have been added.')
-                      else
-                        ...widget.selectedStaff.projectIdeas
-                            .asMap()
-                            .entries
-                            .map((entry) {
-                              final index = entry.key;
-                              final project = entry.value;
+                    ),
+                    const SizedBox(height: 16),
+                    SectionCard(
+                      title: 'Project Ideas',
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FilledButton.icon(
+                            onPressed: _addProjectIdea,
+                            icon: const Icon(Icons.add),
+                            label: const Text('Add project idea'),
+                          ),
+                          const SizedBox(height: 12),
+                          if (widget.selectedStaff.projectIdeas.isEmpty)
+                            const Text('No project ideas have been added.')
+                          else
+                            ...widget.selectedStaff.projectIdeas
+                                .asMap()
+                                .entries
+                                .map((entry) {
+                                  final index = entry.key;
+                                  final project = entry.value;
 
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ProjectIdeaCard(projectIdea: project),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Wrap(
-                                      spacing: 8,
-                                      children: [
-                                        TextButton.icon(
-                                          onPressed: () {
-                                            _editProjectIdea(index);
-                                          },
-                                          icon: const Icon(Icons.edit),
-                                          label: const Text('Edit project'),
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ProjectIdeaCard(project: project),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Wrap(
+                                          spacing: 8,
+                                          children: [
+                                            TextButton.icon(
+                                              onPressed: () {
+                                                _editProjectIdea(index);
+                                              },
+                                              icon: const Icon(Icons.edit),
+                                              label: const Text('Edit project'),
+                                            ),
+                                            TextButton.icon(
+                                              onPressed: () {
+                                                _deleteProjectIdea(index);
+                                              },
+                                              icon: const Icon(Icons.delete),
+                                              label: const Text(
+                                                'Delete project',
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        TextButton.icon(
-                                          onPressed: () {
-                                            _deleteProjectIdea(index);
-                                          },
-                                          icon: const Icon(Icons.delete),
-                                          label: const Text('Delete project'),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                ],
-                              );
-                            }),
-                    ],
-                  ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                    ],
+                                  );
+                                }),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: _nameController,
+                      decoration: const InputDecoration(
+                        labelText: 'Name',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: _departmentController,
+                      decoration: const InputDecoration(
+                        labelText: 'Department',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: _biographyController,
+                      decoration: const InputDecoration(
+                        labelText: 'Biography',
+                        border: OutlineInputBorder(),
+                      ),
+                      maxLines: 4,
+                    ),
+                    const SizedBox(height: 12),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: const Text('Accepting Students'),
+                      value: _acceptingStudents,
+                      onChanged: (value) {
+                        setState(() {
+                          _acceptingStudents = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    FilledButton.icon(
+                      onPressed: _saveProfile,
+                      icon: const Icon(Icons.save),
+                      label: const Text('Save Profile'),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _departmentController,
-                  decoration: const InputDecoration(
-                    labelText: 'Department',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _biographyController,
-                  decoration: const InputDecoration(
-                    labelText: 'Biography',
-                    border: OutlineInputBorder(),
-                  ),
-                  maxLines: 4,
-                ),
-                const SizedBox(height: 12),
-                SwitchListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: const Text('Accepting Students'),
-                  value: _acceptingStudents,
-                  onChanged: (value) {
-                    setState(() {
-                      _acceptingStudents = value;
-                    });
-                  },
-                ),
-                const SizedBox(height: 16),
-                FilledButton.icon(
-                  onPressed: _saveProfile,
-                  icon: const Icon(Icons.save),
-                  label: const Text('Save Profile'),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
