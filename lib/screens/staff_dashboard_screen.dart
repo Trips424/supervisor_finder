@@ -761,7 +761,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      ProjectIdeaCard(project: project),
+                                      ProjectIdeaCard(projectIdea: project),
                                       Align(
                                         alignment: Alignment.centerRight,
                                         child: Wrap(
