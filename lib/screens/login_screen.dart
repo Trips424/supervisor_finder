@@ -112,6 +112,8 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       widget.onStaffRegister(newStaff);
+      // ensure we navigate to the newly created staff account
+      widget.onStaffLogin(newStaff.id);
     }
   }
 
@@ -233,9 +235,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 12),
                 const Divider(),
                 const SizedBox(height: 12),
-                const Text(
-                  'Note: This demo uses in-memory accounts (no passwords).',
-                ),
               ],
             ),
           ),
