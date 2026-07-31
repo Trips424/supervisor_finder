@@ -380,17 +380,42 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   }
 
   void _deleteProjectIdea(int index) {
-    final updatedProjects = List<ProjectIdea>.from(
-      widget.selectedStaff.projectIdeas,
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Delete project idea'),
+          content: const Text(
+            'Are you sure you want to delete this project idea?',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () {
+                final updatedProjects = List<ProjectIdea>.from(
+                  widget.selectedStaff.projectIdeas,
+                );
+
+                updatedProjects.removeAt(index);
+
+                widget.onStaffUpdated(
+                  widget.selectedStaff.copyWith(projectIdeas: updatedProjects),
+                );
+
+                Navigator.of(context).pop();
+                _showMessage('Project idea deleted.');
+              },
+              child: const Text('Delete'),
+            ),
+          ],
+        );
+      },
     );
-
-    updatedProjects.removeAt(index);
-
-    widget.onStaffUpdated(
-      widget.selectedStaff.copyWith(projectIdeas: updatedProjects),
-    );
-
-    _showMessage('Project idea deleted.');
   }
 
   void _saveProfile() {
@@ -537,27 +562,28 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                             .asMap()
                             .entries
                             .map((entry) {
-                          final index = entry.key;
-                          final project = entry.value;
+                              final index = entry.key;
+                              final project = entry.value;
 
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ProjectIdeaCard(projectIdea: project),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: TextButton.icon(
-                                  onPressed: () {
-                                    _deleteProjectIdea(index);
-                                  },
-                                  icon: const Icon(Icons.delete),
-                                  label: const Text('Delete project'),
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                            ],
-                          );
-                        }).toList(),
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ProjectIdeaCard(projectIdea: project),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: TextButton.icon(
+                                      onPressed: () {
+                                        _deleteProjectIdea(index);
+                                      },
+                                      icon: const Icon(Icons.delete),
+                                      label: const Text('Delete project'),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                ],
+                              );
+                            })
+                            .toList(),
                     ],
                   ),
                 ),
