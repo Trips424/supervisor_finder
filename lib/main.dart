@@ -34,6 +34,18 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
     });
   }
 
+  void _updateStaffMember(StaffMember updatedStaff) {
+    setState(() {
+      final index = _staffMembers.indexWhere(
+        (staff) => staff.id == updatedStaff.id,
+      );
+
+      if (index != -1) {
+        _staffMembers[index] = updatedStaff;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -67,21 +79,11 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
           children: [
             StudentBrowseScreen(staffMembers: _staffMembers),
             StaffDashboardScreen(
+              key: ValueKey(_chosenStaff.id),
               staffMembers: _staffMembers,
               selectedStaff: _chosenStaff,
-              onStaffSelected: (staffId) {
-                _selectStaff(staffId);
-              },
-              onStaffUpdated: (updatedStaff) {
-                setState(() {
-                  final index = _staffMembers.indexWhere(
-                    (staff) => staff.id == updatedStaff.id,
-                  );
-                  if (index != -1) {
-                    _staffMembers[index] = updatedStaff;
-                  }
-                });
-              },
+              onStaffSelected: _selectStaff,
+              onStaffUpdated: _updateStaffMember,
             ),
           ],
         ),
