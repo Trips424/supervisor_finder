@@ -16,7 +16,7 @@ final List<StaffMember> sampleStaffMembers = [
         title: 'Predicting football match outcomes',
         description: 'A project using data to predict football results.',
         area: 'Machine Learning',
-        difficulty: 'Advanced',
+        difficulty: 'Hard',
         availability: true,
       ),
       ProjectIdea(
@@ -64,7 +64,7 @@ final List<StaffMember> sampleStaffMembers = [
         title: 'Developing autonomous robots',
         description: 'A project focused on creating autonomous robots.',
         area: 'Robotics',
-        difficulty: 'Advanced',
+        difficulty: 'Hard',
         availability: true,
       ),
     ],
@@ -106,7 +106,7 @@ final List<StaffMember> sampleStaffMembers = [
         description:
             'A project focused on designing scalable web applications.',
         area: 'Software Engineering',
-        difficulty: 'Advanced',
+        difficulty: 'Hard',
         availability: true,
       ),
     ],
