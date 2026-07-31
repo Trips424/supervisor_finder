@@ -24,7 +24,11 @@ class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
   @override
   Widget build(BuildContext context) {
     final filteredStaff = widget.staffMembers.where((staff) {
-      return staffMemberMatchesQuery(staff, _searchQuery);
+      final matchesSearch = staffMemberMatchesQuery(staff, _searchQuery);
+      final matchesAvailability =
+          !_onlyAcceptingStudents || staff.acceptingStudents;
+
+      return matchesSearch && matchesAvailability;
     }).toList();
 
     return SingleChildScrollView(
