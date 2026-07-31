@@ -6,10 +6,7 @@ import '../../widgets/page_header.dart';
 import '../../widgets/staff_card.dart';
 
 class StudentBrowseScreen extends StatefulWidget {
-  const StudentBrowseScreen({
-    super.key,
-    required this.staffMembers,
-  });
+  const StudentBrowseScreen({super.key, required this.staffMembers});
 
   final List<StaffMember> staffMembers;
 
