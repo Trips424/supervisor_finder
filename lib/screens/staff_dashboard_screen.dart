@@ -334,20 +334,20 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                 final description = descriptionController.text.trim();
                 final area = selectedArea;
 
-              if (title.isEmpty) {
-                _showMessage('Project title cannot be empty.');
-                return;
-              }
+                if (title.isEmpty) {
+                  _showMessage('Project title cannot be empty.');
+                  return;
+                }
 
-              if (description.isEmpty) {
-                _showMessage('Project description cannot be empty.');
-                return;
-              }
+                if (description.isEmpty) {
+                  _showMessage('Project description cannot be empty.');
+                  return;
+                }
 
-              if (area.isEmpty) {
-                _showMessage('Project area cannot be empty.');
-                return;
-              }
+                if (area.isEmpty) {
+                  _showMessage('Project area cannot be empty.');
+                  return;
+                }
 
               final updatedProjects = List<ProjectIdea>.from(
                 widget.selectedStaff.projectIdeas,
