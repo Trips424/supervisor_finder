@@ -53,6 +53,17 @@ class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
                 },
               ),
               const SizedBox(height: 12),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Only show staff accepting students'),
+                value: _onlyAcceptingStudents,
+                onChanged: (value) {
+                  setState(() {
+                    _onlyAcceptingStudents = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 12),
               Text(
                 '${filteredStaff.length} staff profile(s) found',
                 style: const TextStyle(fontWeight: FontWeight.w500),
