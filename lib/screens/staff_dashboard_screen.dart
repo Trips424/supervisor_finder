@@ -13,12 +13,16 @@ class StaffDashboardScreen extends StatefulWidget {
     required this.selectedStaff,
     required this.onStaffSelected,
     required this.onStaffUpdated,
+    this.isStaffUser = false,
+    this.editableStaffId,
   });
 
   final List<StaffMember> staffMembers;
   final StaffMember selectedStaff;
   final void Function(String staffId) onStaffSelected;
   final void Function(StaffMember staff) onStaffUpdated;
+  final bool isStaffUser;
+  final String? editableStaffId;
 
   @override
   State<StaffDashboardScreen> createState() => _StaffDashboardScreenState();
@@ -695,24 +699,41 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                     'Manage your profile, specialisations and project ideas.',
               ),
               const SizedBox(height: 24),
-              DropdownButtonFormField<String>(
-                initialValue: widget.selectedStaff.id,
-                decoration: const InputDecoration(
-                  labelText: 'Select staff profile',
-                  border: OutlineInputBorder(),
+              if (widget.isStaffUser)
+                // Staff users can only edit their own profile: show disabled selector
+                DropdownButtonFormField<String>(
+                  initialValue: widget.selectedStaff.id,
+                  decoration: const InputDecoration(
+                    labelText: 'Selected staff profile',
+                    border: OutlineInputBorder(),
+                  ),
+                  items: [
+                    DropdownMenuItem<String>(
+                      value: widget.selectedStaff.id,
+                      child: Text(widget.selectedStaff.name),
+                    ),
+                  ],
+                  onChanged: null,
+                )
+              else
+                DropdownButtonFormField<String>(
+                  initialValue: widget.selectedStaff.id,
+                  decoration: const InputDecoration(
+                    labelText: 'Select staff profile',
+                    border: OutlineInputBorder(),
+                  ),
+                  items: widget.staffMembers.map((staff) {
+                    return DropdownMenuItem<String>(
+                      value: staff.id,
+                      child: Text(staff.name),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    if (value != null) {
+                      widget.onStaffSelected(value);
+                    }
+                  },
                 ),
-                items: widget.staffMembers.map((staff) {
-                  return DropdownMenuItem<String>(
-                    value: staff.id,
-                    child: Text(staff.name),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  if (value != null) {
-                    widget.onStaffSelected(value);
-                  }
-                },
-              ),
               const SizedBox(height: 24),
               SectionCard(
                 title: 'Selected Staff Profile',
