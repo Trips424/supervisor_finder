@@ -533,9 +533,31 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                       if (widget.selectedStaff.projectIdeas.isEmpty)
                         const Text('No project ideas have been added.')
                       else
-                        ...widget.selectedStaff.projectIdeas.map((project) {
-                          return ProjectIdeaCard(projectIdea: project);
-                        }),
+                        ...widget.selectedStaff.projectIdeas
+                            .asMap()
+                            .entries
+                            .map((entry) {
+                          final index = entry.key;
+                          final project = entry.value;
+
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ProjectIdeaCard(projectIdea: project),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton.icon(
+                                  onPressed: () {
+                                    _deleteProjectIdea(index);
+                                  },
+                                  icon: const Icon(Icons.delete),
+                                  label: const Text('Delete project'),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                            ],
+                          );
+                        }).toList(),
                     ],
                   ),
                 ),
