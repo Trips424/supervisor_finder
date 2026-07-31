@@ -226,74 +226,131 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   }
 
   void _addProjectIdea() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        final titleController = TextEditingController();
-        final descriptionController = TextEditingController();
-        final areaController = TextEditingController();
-        final difficultyController = TextEditingController();
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
-        return AlertDialog(
-          title: const Text('Add Project Idea'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: 'Title',
-                  border: OutlineInputBorder(),
-                ),
+  String selectedArea = 'Machine Learning';
+  String difficulty = 'Intermediate';
+
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Add project idea'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: titleController,
+              decoration: const InputDecoration(
+                labelText: 'Project title',
+                border: OutlineInputBorder(),
               ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: descriptionController,
-                decoration: const InputDecoration(
-                  labelText: 'Description',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: 3,
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: areaController,
-                decoration: const InputDecoration(
-                  labelText: 'Area',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: difficultyController,
-                decoration: const InputDecoration(
-                  labelText: 'Difficulty',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
             ),
-            FilledButton(
-              onPressed: () {
-                final title = titleController.text.trim();
-                final description = descriptionController.text.trim();
-                final area = areaController.text.trim();
-                final difficulty = difficultyController.text.trim();
-
-                if (title.isEmpty ||
-                    description.isEmpty ||
-                    area.isEmpty ||
-                    difficulty.isEmpty) {
-                  _showMessage('All fields cannot be empty.');
-                  return;
+            const SizedBox(height: 12),
+            TextField(
+              controller: descriptionController,
+              decoration: const InputDecoration(
+                labelText: 'Project description',
+                border: OutlineInputBorder(),
+              ),
+              maxLines: 3,
+            ),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String>(
+              initialValue: selectedArea,
+              decoration: const InputDecoration(
+                labelText: 'Project area',
+                border: OutlineInputBorder(),
+              ),
+              items: const [
+                DropdownMenuItem(
+                  value: 'Machine Learning',
+                  child: Text('Machine Learning'),
+                ),
+                DropdownMenuItem(
+                  value: 'Data Analysis',
+                  child: Text('Data Analysis'),
+                ),
+                DropdownMenuItem(
+                  value: 'Software Testing',
+                  child: Text('Software Testing'),
+                ),
+                DropdownMenuItem(
+                  value: 'Web Development',
+                  child: Text('Web Development'),
+                ),
+                DropdownMenuItem(
+                  value: 'Graph Theory',
+                  child: Text('Graph Theory'),
+                ),
+                DropdownMenuItem(
+                  value: 'Databases',
+                  child: Text('Databases'),
+                ),
+                DropdownMenuItem(
+                  value: 'Cloud Computing',
+                  child: Text('Cloud Computing'),
+                ),
+              ],
+              onChanged: (value) {
+                if (value != null) {
+                  selectedArea = value;
                 }
+              },
+            ),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String>(
+              initialValue: difficulty,
+              decoration: const InputDecoration(
+                labelText: 'Difficulty',
+                border: OutlineInputBorder(),
+              ),
+              items: const [
+                DropdownMenuItem(
+                  value: 'Intermediate',
+                  child: Text('Intermediate'),
+                ),
+                DropdownMenuItem(
+                  value: 'Hard',
+                  child: Text('Hard'),
+                ),
+              ],
+              onChanged: (value) {
+                if (value != null) {
+                  difficulty = value;
+                }
+              },
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final title = titleController.text.trim();
+              final description = descriptionController.text.trim();
+              final area = selectedArea;
+
+              if (title.isEmpty) {
+                _showMessage('Project title cannot be empty.');
+                return;
+              }
+
+              if (description.isEmpty) {
+                _showMessage('Project description cannot be empty.');
+                return;
+              }
+
+              if (area.isEmpty) {
+                _showMessage('Project area cannot be empty.');
+                return;
+              }
 
                 final updatedProjectIdeas = List<ProjectIdea>.from(
                   widget.selectedStaff.projectIdeas,
