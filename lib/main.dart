@@ -21,6 +21,12 @@ class _SupervisorFinderAppState extends State<SupervisorFinderApp> {
     sampleStaffMembers,
   );
 
+  // simple in-memory student accounts (id,email)
+  final List<Map<String, String>> _studentAccounts = [];
+
+  String? _loggedInRole; // 'student' or 'staff'
+  String? _loggedInUserId;
+
   int _selectedPageIndex = 0;
   String _chosenStaffId = sampleStaffMembers.first.id;
 
