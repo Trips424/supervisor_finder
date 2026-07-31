@@ -19,6 +19,7 @@ class StudentBrowseScreen extends StatefulWidget {
 
 class _StudentBrowseScreenState extends State<StudentBrowseScreen> {
   String _searchQuery = '';
+  bool _onlyAcceptingStudents = false;
 
   @override
   Widget build(BuildContext context) {
