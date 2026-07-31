@@ -429,6 +429,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
 
     String selectedArea = project.area;
     String difficulty = project.difficulty;
+    String availability = project.availability ? 'Available' : 'Unavailable';
 
     showDialog(
       context: context,
@@ -517,32 +518,31 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   }
                 },
               ),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                initialValue: availability,
+                decoration: const InputDecoration(
+                  labelText: 'Availability',
+                  border: OutlineInputBorder(),
+                ),
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Available',
+                    child: Text('Available'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'Unavailable',
+                    child: Text('Unavailable'),
+                  ),
+                ],
+                onChanged: (value) {
+                  if (value != null) {
+                    availability = value;
+                  }
+                },
+              ),
             ],
           ),
-
-          const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            initialValue: availability,
-            decoration: const InputDecoration(
-              labelText: 'Availability',
-              border: OutlineInputBorder(),
-            ),
-            items: const [
-              DropdownMenuItem(
-                value: 'Available',
-                child: Text('Available'),
-              ),
-              DropdownMenuItem(
-                value: 'Unavailable',
-                child: Text('Unavailable'),
-              ),
-            ],
-            onChanged: (value) {
-              if (value != null) {
-                availability = value;
-            }
-          },
-        ),
           actions: [
             TextButton(
               onPressed: () {
@@ -574,6 +574,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   description: description,
                   area: selectedArea,
                   difficulty: difficulty,
+                  availability: availability == 'Available',
                 );
 
                 widget.onStaffUpdated(
