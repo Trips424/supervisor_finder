@@ -231,7 +231,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
 
     String selectedArea = 'Machine Learning';
     String difficulty = 'Intermediate';
-    bool projectAvailability = true;
+    String availability = 'Available';
 
     showDialog(
       context: context,
@@ -361,7 +361,7 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                     description: description,
                     area: area,
                     difficulty: difficulty,
-                    availability: projectAvailability,
+                    availability: availability == 'Available',
                   ),
                 );
 
