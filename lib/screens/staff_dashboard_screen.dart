@@ -349,25 +349,23 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
                   return;
                 }
 
-              final updatedProjects = List<ProjectIdea>.from(
-                widget.selectedStaff.projectIdeas,
-              );
+                final updatedProjects = List<ProjectIdea>.from(
+                  widget.selectedStaff.projectIdeas,
+                );
 
-              updatedProjects.add(
-                ProjectIdea(
-                  id: 'project-${DateTime.now().millisecondsSinceEpoch}',
-                  title: title,
-                  description: description,
-                  area: area,
-                  difficulty: difficulty,
-                  availability: true,
-                ),
-              );
+                updatedProjects.add(
+                  ProjectIdea(
+                    id: 'project-${DateTime.now().millisecondsSinceEpoch}',
+                    title: title,
+                    description: description,
+                    area: area,
+                    difficulty: difficulty,
+                    availability: true,
+                  ),
+                );
 
                 widget.onStaffUpdated(
-                  widget.selectedStaff.copyWith(
-                    projectIdeas: updatedProjectIdeas,
-                  ),
+                  widget.selectedStaff.copyWith(projectIdeas: updatedProjects),
                 );
 
                 Navigator.of(context).pop();
